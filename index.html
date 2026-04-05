@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Emaan Zehra Butt</title>
+    <style>
+        :root {
+            --navy: #0F172A;
+            --blue: #3B82F6;
+            --slate: #64748B;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--navy);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .card {
+            background: var(--white);
+            width: 100%;
+            max-width: 1050px;
+            border-radius: 24px;
+            display: flex;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Left Side */
+        .content {
+            flex: 1.4;
+            padding: 60px;
+        }
+
+        nav {
+            margin-bottom: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--slate);
+            margin-right: 20px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--blue);
+        }
+
+        .tag {
+            color: var(--blue);
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: var(--navy);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .bio {
+            color: var(--slate);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 35px;
+            font-size: 0.85rem;
+        }
+
+        .item b {
+            color: var(--navy);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-blue {
+            background: var(--blue);
+            color: white;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--navy);
+            color: var(--navy);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        /* Right Side: Smaller Image Section */
+        .image-side {
+            flex: 0.7;
+            background: var(--blue);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .blob-frame {
+            width: 250px; /* New larger size */
+            height: 250px; /* New larger size */
+            background: white;
+            border-radius: 50%; /* Changes from blob to perfect circle */
+            overflow: hidden;
+            border: 4px solid rgba(255,255,255,0.4);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Added shadow for professional look */
+        }
+
+        .blob-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 850px) {
+            .card {
+                flex-direction: column;
+            }
+
+            .image-side {
+                padding: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <div class="content">
+            <nav id="links-nav"></nav>
+            <span class="tag" id="profile-tag"></span>
+            <h1 id="name-heading"></h1>
+            <p class="bio" id="bio-text"></p>
+
+            <div class="grid" id="details-grid"></div>
+
+            <div class="btn-group">
+                <a href="#" id="main-cta" class="btn btn-blue">LinkedIn</a>
+                <a href="/download-cv" class="btn btn-outline">Download CV</a>
+            </div>
+        </div>
+
+        <div class="image-side">
+            <div class="blob-frame">
+                <img id="profile-img" src="" alt="Profile Photo">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const profile = {
+            name: "Emaan Zehra Butt",
+            role: "SOFTWARE ENGINEER & AI STUDENT",
+            photo: "/static/emaan_pfp.png",
+            bio: "Driven by the transformative potential of Artificial Intelligence, I am a dedicated student and developer committed to building the next generation of intelligent systems.",
+            links: [
+                { label: "GitHub", url: "https://github.com/emaanzehra" },
+                { label: "LinkedIn", url: "https://www.linkedin.com/in/emaanzehra/" },
+                { label: "Contact", url: "mailto:emaanzehrabutt@gmail.com" }
+            ],
+            info: [
+                { label: "Education", val: "BS in Artificial Intelligence (CGPA 3.56/4.00)" },
+                { label: "Language", val: "English (C1), Urdu (Native), German (A1)" },
+                { label: "Experience", val: "GDGOC Software Engineer" },
+                { label: "Focus", val: "Machine Learning & Backend" }
+            ]
+        };
+
+        // Populate Content
+        document.getElementById('name-heading').innerText = profile.name;
+        document.getElementById('profile-tag').innerText = profile.role;
+        document.getElementById('bio-text').innerText = profile.bio;
+        document.getElementById('profile-img').src = profile.photo;
+        document.getElementById('main-cta').href = profile.links[1].url;
+
+        // Dynamic Navigation
+        const nav = document.getElementById('links-nav');
+        profile.links.forEach(l => {
+            nav.innerHTML += `<a href="${l.url}" target="_blank">${l.label}</a>`;
+        });
+
+        // Dynamic Details
+        const grid = document.getElementById('details-grid');
+        profile.info.forEach(i => {
+            grid.innerHTML += `<div class="item"><b>${i.label}</b> ${i.val}</div>`;
+        });
+    </script>
+</body>
+
+</html>
