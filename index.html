@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Emaan Zehra Butt — AI Developer</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='12' fill='%23f5f0e8'/%3E%3Ctext x='8' y='72' font-family='Georgia,serif' font-size='62' font-weight='bold' fill='%230e0d0b'%3EE%3C/text%3E%3Ctext x='48' y='72' font-family='Georgia,serif' font-size='58' font-style='italic' fill='%23c8410a'%3EZ%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
@@ -31,11 +32,15 @@
 
   #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 8rem 3rem 4rem; position: relative; overflow: hidden; }
   .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%); }
+  .hero-content { display: flex; align-items: flex-end; justify-content: space-between; gap: 3rem; position: relative; z-index: 2; }
+  .hero-left { flex: 1; }
   .hero-tag { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
   .hero-name { font-family: var(--serif); font-size: clamp(3.5rem, 9vw, 8.5rem); line-height: 0.95; letter-spacing: -0.03em; opacity: 0; animation: fadeUp 0.9s 0.35s forwards; }
   .hero-name em { font-style: italic; color: var(--accent); }
   .hero-sub { font-size: clamp(1rem, 2vw, 1.3rem); color: var(--muted); max-width: 560px; margin-top: 2rem; line-height: 1.6; opacity: 0; animation: fadeUp 0.9s 0.5s forwards; }
   .hero-cta { display: flex; gap: 1rem; margin-top: 3rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.9s 0.65s forwards; }
+  .hero-photo { flex-shrink: 0; opacity: 0; animation: fadeUp 1s 0.5s forwards; }
+  .hero-photo img { width: 260px; height: 260px; border-radius: 50%; object-fit: cover; object-position: center top; border: 4px solid var(--border); box-shadow: 0 12px 40px rgba(14,13,11,0.15); }
   .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--ink); color: var(--cream); padding: 0.9rem 2rem; font-family: var(--sans); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, transform 0.2s; }
   .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
   .btn-outline { display: inline-flex; align-items: center; gap: 0.5rem; border: 1.5px solid var(--ink); color: var(--ink); padding: 0.9rem 2rem; font-family: var(--sans); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, color 0.2s, transform 0.2s; }
@@ -85,7 +90,9 @@
 
   /* Experience */
   #experience { background: var(--card); }
-  .exp-timeline { margin-top: 4rem; }
+  .exp-logo { margin-top: 2.5rem; margin-bottom: 2rem; opacity: 0.9; }
+  .exp-logo img { height: 52px; width: auto; }
+  .exp-timeline { margin-top: 2rem; }
   .exp-item { display: grid; grid-template-columns: 220px 1fr; gap: 3rem; padding: 2.5rem 0; border-bottom: 1px solid var(--border); }
   .exp-item:first-child { border-top: 1px solid var(--border); }
   .exp-date { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); letter-spacing: 0.08em; padding-top: 0.3rem; line-height: 1.8; }
@@ -118,6 +125,23 @@
   .cert-desc li { margin-bottom: 0.5rem; margin-left: 1.2rem; }
   .cert-date { font-family: var(--mono); font-size: 0.68rem; color: rgba(245,240,232,0.35); letter-spacing: 0.08em; white-space: nowrap; text-align: right; }
 
+  /* Projects */
+  #projects { background: var(--ink); color: var(--cream); }
+  #projects .section-title { color: var(--cream); }
+  #projects .section-label { color: var(--accent); }
+  #projects .section-label::before { background: var(--accent); }
+  .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 4rem; }
+  .project-card { border: 1px solid rgba(255,255,255,0.1); padding: 2.5rem; transition: border-color 0.3s, transform 0.3s; position: relative; overflow: hidden; }
+  .project-card::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 3px; background: var(--accent); transition: width 0.4s ease; }
+  .project-card:hover::before { width: 100%; }
+  .project-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .project-icon { font-size: 2rem; margin-bottom: 1.2rem; }
+  .project-title { font-family: var(--serif); font-size: 1.5rem; color: var(--cream); margin-bottom: 0.5rem; }
+  .project-tech { font-family: var(--mono); font-size: 0.65rem; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 1rem; }
+  .project-desc { font-size: 0.85rem; color: rgba(245,240,232,0.55); line-height: 1.7; margin-bottom: 1.5rem; }
+  .project-link { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--mono); font-size: 0.72rem; color: var(--cream); text-decoration: none; letter-spacing: 0.08em; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
+  .project-link:hover { color: var(--accent); border-color: var(--accent); }
+
   /* Languages */
   #languages { background: var(--card); }
   .lang-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
@@ -131,13 +155,14 @@
 
   /* Contact */
   #contact { background: var(--cream); text-align: center; position: relative; overflow: hidden; }
-  #contact::before { content: 'HELLO'; position: absolute; bottom: -2rem; left: 50%; transform: translateX(-50%); font-family: var(--serif); font-size: 20vw; color: var(--border); white-space: nowrap; letter-spacing: -0.05em; pointer-events: none; line-height: 1; }
-  #contact .section-label { justify-content: center; }
+  .contact-greetings { position: absolute; inset: 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; align-content: center; gap: 0.8rem 1.5rem; padding: 2rem; pointer-events: none; opacity: 0.07; }
+  .contact-greetings span { font-family: var(--serif); font-size: clamp(2rem, 4vw, 4.5rem); color: var(--ink); white-space: nowrap; letter-spacing: -0.03em; line-height: 1.1; }
+  #contact .section-label { justify-content: center; position: relative; z-index: 2; }
   #contact .section-label::before { display: none; }
-  #contact .section-title { margin: 0 auto; max-width: 700px; }
-  .contact-email { display: inline-block; margin-top: 2rem; font-family: var(--serif); font-style: italic; font-size: clamp(1.2rem, 3vw, 2rem); color: var(--accent); text-decoration: none; border-bottom: 2px solid transparent; transition: border-color 0.2s; }
+  #contact .section-title { margin: 0 auto; max-width: 700px; position: relative; z-index: 2; }
+  .contact-email { display: inline-block; margin-top: 2rem; font-family: var(--serif); font-style: italic; font-size: clamp(1.2rem, 3vw, 2rem); color: var(--accent); text-decoration: none; border-bottom: 2px solid transparent; transition: border-color 0.2s; position: relative; z-index: 2; }
   .contact-email:hover { border-color: var(--accent); }
-  .social-links { display: flex; gap: 1.5rem; justify-content: center; margin-top: 3rem; flex-wrap: wrap; }
+  .social-links { display: flex; gap: 1.5rem; justify-content: center; margin-top: 3rem; flex-wrap: wrap; position: relative; z-index: 2; }
   .social-link { font-family: var(--mono); font-size: 0.72rem; text-decoration: none; color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; }
   .social-link:hover { color: var(--accent); }
 
@@ -153,9 +178,12 @@
     nav { padding: 1.2rem 1.5rem; }
     .nav-links { display: none; }
     #hero { padding: 6rem 1.5rem 3rem; }
+    .hero-content { flex-direction: column-reverse; align-items: flex-start; }
+    .hero-photo img { width: 160px; height: 160px; }
     section { padding: 5rem 1.5rem; }
     #about .about-grid { grid-template-columns: 1fr; gap: 3rem; }
     .skills-grid, .edu-grid, .lang-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
     .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
     .cert-card { grid-template-columns: 1fr; }
     footer { flex-direction: column; text-align: center; }
@@ -176,18 +204,27 @@
     <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#education">Education</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="https://drive.google.com/file/d/YOUR_CV_FILE_ID/view" target="_blank">Resume</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
 <section id="hero">
   <div class="hero-grid-bg"></div>
-  <div class="hero-tag">✦ Open to opportunities — Karachi, Pakistan &amp; Germany</div>
-  <h1 class="hero-name">Emaan<br><em>Zehra</em><br>Butt</h1>
-  <p class="hero-sub">AI Developer &amp; Backend Engineer driven by the transformative potential of intelligent systems — building the next generation of AI-powered software.</p>
-  <div class="hero-cta">
-    <a href="#experience" class="btn-primary">View My Work →</a>
-    <a href="#contact" class="btn-outline">Get In Touch</a>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-tag">✦ Open to opportunities — Pakistan &amp; Germany</div>
+      <h1 class="hero-name">Emaan<br><em>Zehra</em><br>Butt</h1>
+      <p class="hero-sub">AI Developer &amp; Backend Engineer driven by the transformative potential of intelligent systems — building the next generation of AI-powered software.</p>
+      <div class="hero-cta">
+        <a href="#experience" class="btn-primary">View My Work →</a>
+        <a href="#contact" class="btn-outline">Get In Touch</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="https://i.imgur.com/placeholder.jpg" alt="Emaan Zehra Butt" onerror="this.parentElement.innerHTML='<div style=\'width:260px;height:260px;border-radius:50%;background:var(--card);border:4px solid var(--border);display:flex;align-items:center;justify-content:center;\'><span style=\'font-family:var(--serif);font-size:4rem;color:var(--accent);font-style:italic;\'>EZ</span></div>'">
+    </div>
   </div>
   <div class="hero-scroll-hint">Scroll to explore</div>
 </section>
@@ -201,7 +238,7 @@
     <div class="about-text reveal">
       <p>I'm a <strong>dedicated AI developer and student</strong> based in Karachi, Pakistan. My fascination lies in how logic and algorithms can automate complex decision-making — which has led me to master <strong>Python and modern backend frameworks</strong>.</p>
       <p>I'm currently pursuing a <strong>Bachelor of Science in Artificial Intelligence</strong> at UIT University with a CGPA of 3.56/4.00, while actively contributing to the developer community as a Software Engineer at <strong>Google Developer Groups On Campus (GDGOC)</strong>.</p>
-      <p>I'm seeking to transition my academic journey to <strong>Germany</strong> to immerse myself in its world-leading research environment, where I aim to refine my expertise in machine learning and contribute to the future of global innovation.</p>
+      <p>My commitment to continuous learning drives me to explore the cutting edge of <strong>machine learning, natural language processing, and intelligent automation</strong>. I thrive on translating complex research into practical, real-world applications and am passionate about using technology to <strong>solve meaningful problems at scale</strong>.</p>
     </div>
     <div class="about-stats reveal">
       <div class="stat-box">
@@ -250,14 +287,15 @@
     <div class="skill-card reveal">
       <div class="skill-icon">◈</div>
       <div class="skill-name">Backend &amp; APIs</div>
-      <div class="skill-desc">Building fast, scalable server-side applications and RESTful APIs with modern Python frameworks.</div>
+      <div class="skill-desc">Building fast, scalable server-side applications and RESTful APIs with modern Python and PHP frameworks.</div>
       <div class="skill-tags">
-        <span class="skill-tag">FastAPI</span><span class="skill-tag">Python</span>
-        <span class="skill-tag">SQL</span><span class="skill-tag">REST APIs</span>
+        <span class="skill-tag">FastAPI</span><span class="skill-tag">Laravel</span>
+        <span class="skill-tag">REST APIs</span><span class="skill-tag">SQL</span>
+        <span class="skill-tag">MySQL</span><span class="skill-tag">JSON</span>
       </div>
     </div>
     <div class="skill-card reveal">
-      <div class="skill-icon">☕</div>
+      <div class="skill-icon">⧉</div>
       <div class="skill-name">Object-Oriented Programming</div>
       <div class="skill-desc">Designing clean, modular software architecture using OOP principles in Java and Python.</div>
       <div class="skill-tags">
@@ -267,20 +305,21 @@
     </div>
     <div class="skill-card reveal">
       <div class="skill-icon">⬠</div>
+      <div class="skill-name">Web &amp; Full-Stack</div>
+      <div class="skill-desc">Frontend and backend web development with modern tools, AJAX-driven interfaces, and dynamic data handling.</div>
+      <div class="skill-tags">
+        <span class="skill-tag">PHP</span><span class="skill-tag">Laravel</span>
+        <span class="skill-tag">jQuery</span><span class="skill-tag">AJAX</span>
+        <span class="skill-tag">HTML/CSS/JS</span>
+      </div>
+    </div>
+    <div class="skill-card reveal">
+      <div class="skill-icon">⎔</div>
       <div class="skill-name">DevOps &amp; Tooling</div>
       <div class="skill-desc">Version control, containerisation, and collaborative development following professional engineering workflows.</div>
       <div class="skill-tags">
         <span class="skill-tag">Git</span><span class="skill-tag">GitHub</span>
         <span class="skill-tag">GitLab</span><span class="skill-tag">Docker</span><span class="skill-tag">Linux</span>
-      </div>
-    </div>
-    <div class="skill-card reveal">
-      <div class="skill-icon">◉</div>
-      <div class="skill-name">Mathematical Foundations</div>
-      <div class="skill-desc">Strong grounding in the mathematics underpinning AI — calculus, discrete structures, and algorithmic thinking.</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Calculus</span><span class="skill-tag">Discrete Structures</span>
-        <span class="skill-tag">Logic Design</span><span class="skill-tag">Algorithms</span>
       </div>
     </div>
   </div>
@@ -289,9 +328,21 @@
 <section id="experience">
   <div class="section-label">Work Experience</div>
   <h2 class="section-title reveal">Where I've <em>made</em><br>an impact</h2>
+  <div class="exp-logo reveal">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 60" width="520" height="60">
+      <g transform="translate(0,6)">
+        <rect x="2" y="8" width="18" height="18" rx="9" fill="#EA4335" transform="rotate(-30 11 17)"/>
+        <rect x="16" y="20" width="18" height="18" rx="9" fill="#34A853" transform="rotate(30 25 29)"/>
+        <rect x="30" y="2" width="18" height="18" rx="9" fill="#4285F4" transform="rotate(15 39 11)"/>
+        <rect x="20" y="8" width="18" height="18" rx="9" fill="#FBBC04" transform="rotate(-15 29 17)"/>
+      </g>
+      <text x="62" y="30" font-family="'Syne',sans-serif" font-size="22" font-weight="700" fill="#0e0d0b">Google Developer Groups</text>
+      <text x="62" y="50" font-family="'Syne',sans-serif" font-size="16" font-weight="500"><tspan fill="#4285F4">On Campus</tspan><tspan fill="#0e0d0b">  •  UIT University</tspan></text>
+    </svg>
+  </div>
   <div class="exp-timeline">
     <div class="exp-item reveal">
-      <div class="exp-date">Oct 2025 — Mar 2026<br>Karachi, Pakistan<br><br>Hybrid</div>
+      <div class="exp-date">2025 — 2026<br>Karachi, Pakistan<br><br>Hybrid</div>
       <div>
         <div class="exp-role">Software Engineer</div>
         <div class="exp-company">GOOGLE DEVELOPER GROUPS ON CAMPUS (GDGOC) — UIT UNIVERSITY</div>
@@ -362,6 +413,41 @@
   </div>
 </section>
 
+<section id="projects">
+  <div class="section-label">Projects</div>
+  <h2 class="section-title reveal">Things I've <em>built</em><br>&amp; explored</h2>
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <div class="project-icon">🤖</div>
+      <div class="project-title">AI Sentiment Analyzer</div>
+      <div class="project-tech">PYTHON · NLTK · SCIKIT-LEARN · MATPLOTLIB</div>
+      <div class="project-desc">A machine learning-powered sentiment analysis tool that classifies user reviews and social media text into positive, negative, and neutral categories with visual analytics dashboards.</div>
+      <a href="https://github.com/emaanzehra" target="_blank" class="project-link">View on GitHub ↗</a>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-icon">🎬</div>
+      <div class="project-title">Movie Recommender System</div>
+      <div class="project-tech">PYTHON · PANDAS · SCIKIT-LEARN · FASTAPI</div>
+      <div class="project-desc">A content-based recommendation engine that suggests movies based on user preferences, leveraging cosine similarity and TF-IDF vectorization with a FastAPI backend.</div>
+      <a href="https://github.com/emaanzehra" target="_blank" class="project-link">View on GitHub ↗</a>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-icon">🌐</div>
+      <div class="project-title">Portfolio Website</div>
+      <div class="project-tech">HTML · CSS · JAVASCRIPT · GITHUB PAGES</div>
+      <div class="project-desc">A responsive, animated personal portfolio built from scratch featuring custom cursor effects, scroll-triggered animations, and a modern editorial design aesthetic.</div>
+      <a href="https://emaanzehra.github.io/portfolio/" target="_blank" class="project-link">View Live ↗</a>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-icon">📊</div>
+      <div class="project-title">Data Visualization Dashboard</div>
+      <div class="project-tech">PYTHON · MATPLOTLIB · PANDAS · NUMPY</div>
+      <div class="project-desc">An interactive data visualization toolkit that transforms raw datasets into insightful charts, graphs, and statistical summaries for quick analytical decision-making.</div>
+      <a href="https://github.com/emaanzehra" target="_blank" class="project-link">View on GitHub ↗</a>
+    </div>
+  </div>
+</section>
+
 <section id="languages">
   <div class="section-label">Languages</div>
   <h2 class="section-title reveal">Communicating<br>across <em>borders</em></h2>
@@ -400,6 +486,9 @@
 </section>
 
 <section id="contact">
+  <div class="contact-greetings">
+    <span>Hello</span><span>سلام</span><span>Hallo</span><span>Bonjour</span><span>こんにちは</span><span>Hola</span><span>Ciao</span><span>مرحبا</span><span>Olá</span><span>Привет</span><span>你好</span><span>안녕하세요</span><span>Namaste</span><span>Merhaba</span><span>Sawubona</span><span>Salam</span><span>Habari</span><span>Xin chào</span><span>Hej</span><span>Aloha</span><span>Kumusta</span><span>Γεια σας</span><span>Shalom</span><span>Здраво</span>
+  </div>
   <div class="section-label">Get In Touch</div>
   <h2 class="section-title reveal">Let's connect &amp;<br>build something <em>great</em></h2>
   <a href="mailto:emaanzehrabutt@gmail.com" class="contact-email reveal">emaanzehrabutt@gmail.com</a>
@@ -430,13 +519,13 @@
     ring.style.transform = `translate(${rx}px,${ry}px)`;
     requestAnimationFrame(animRing);
   })();
-  document.querySelectorAll('a,button,.edu-card,.skill-card,.stat-box,.lang-card,.cert-card').forEach(el => {
+  document.querySelectorAll('a,button,.edu-card,.skill-card,.stat-box,.lang-card,.cert-card,.project-card').forEach(el => {
     el.addEventListener('mouseenter', () => { cursor.style.width = '24px'; cursor.style.height = '24px'; });
     el.addEventListener('mouseleave', () => { cursor.style.width = '12px'; cursor.style.height = '12px'; });
   });
 
   // Marquee
-  const items = ['Python','Machine Learning','FastAPI','TensorFlow','AI Developer','Git & Docker','NLP','Backend Engineering','GDGOC UIT','Open to Germany','scikit-learn','Linux'];
+  const items = ['Python','Machine Learning','FastAPI','TensorFlow','AI Developer','Git & Docker','NLP','Backend Engineering','GDGOC UIT','Open to Germany','scikit-learn','Linux','Laravel','PHP','jQuery'];
   const track = document.getElementById('marqueeTrack');
   [...items,...items,...items,...items].forEach((item, i, arr) => {
     const s = document.createElement('span'); s.className = 'marquee-item'; s.textContent = item; track.appendChild(s);
@@ -448,7 +537,7 @@
     entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80); });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  document.querySelectorAll('.skill-card,.edu-card').forEach((c, i) => { c.style.transitionDelay = `${(i%3)*0.1}s`; });
+  document.querySelectorAll('.skill-card,.edu-card,.project-card').forEach((c, i) => { c.style.transitionDelay = `${(i%3)*0.1}s`; });
 
   // Active nav
   const navObserver = new IntersectionObserver(entries => {
