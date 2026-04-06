@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Emaan Zehra Butt — AI Developer</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='12' fill='%23f5f0e8'/%3E%3Ctext x='8' y='72' font-family='Georgia,serif' font-size='62' font-weight='bold' fill='%230e0d0b'%3EE%3C/text%3E%3Ctext x='48' y='72' font-family='Georgia,serif' font-size='58' font-style='italic' fill='%23c8410a'%3EZ%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='3' y='75' font-family='Georgia,serif' font-size='68' font-weight='bold' fill='%230e0d0b'%3EE%3C/text%3E%3Ctext x='45' y='75' font-family='Georgia,serif' font-size='62' font-style='italic' fill='%23c8410a'%3EZ%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
@@ -32,15 +32,17 @@
 
   #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 8rem 3rem 4rem; position: relative; overflow: hidden; }
   .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%); }
-  .hero-content { display: flex; align-items: flex-end; justify-content: space-between; gap: 3rem; position: relative; z-index: 2; }
-  .hero-left { flex: 1; }
+
+  .hero-photo { position: absolute; top: 50%; right: 6%; transform: translateY(-50%); z-index: 2; opacity: 0; animation: fadeUp 1s 0.5s forwards; }
+  .hero-photo-circle { width: 280px; height: 280px; border-radius: 50%; overflow: hidden; border: 4px solid var(--border); box-shadow: 0 16px 50px rgba(14,13,11,0.15); background: var(--card); }
+  .hero-photo-circle img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+  .hero-photo-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 4.5rem; color: var(--accent); font-style: italic; background: var(--card); }
+
   .hero-tag { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
   .hero-name { font-family: var(--serif); font-size: clamp(3.5rem, 9vw, 8.5rem); line-height: 0.95; letter-spacing: -0.03em; opacity: 0; animation: fadeUp 0.9s 0.35s forwards; }
   .hero-name em { font-style: italic; color: var(--accent); }
   .hero-sub { font-size: clamp(1rem, 2vw, 1.3rem); color: var(--muted); max-width: 560px; margin-top: 2rem; line-height: 1.6; opacity: 0; animation: fadeUp 0.9s 0.5s forwards; }
   .hero-cta { display: flex; gap: 1rem; margin-top: 3rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.9s 0.65s forwards; }
-  .hero-photo { flex-shrink: 0; opacity: 0; animation: fadeUp 1s 0.5s forwards; }
-  .hero-photo img { width: 260px; height: 260px; border-radius: 50%; object-fit: cover; object-position: center top; border: 4px solid var(--border); box-shadow: 0 12px 40px rgba(14,13,11,0.15); }
   .btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--ink); color: var(--cream); padding: 0.9rem 2rem; font-family: var(--sans); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, transform 0.2s; }
   .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
   .btn-outline { display: inline-flex; align-items: center; gap: 0.5rem; border: 1.5px solid var(--ink); color: var(--ink); padding: 0.9rem 2rem; font-family: var(--sans); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, color 0.2s, transform 0.2s; }
@@ -154,9 +156,16 @@
   .lang-level-item strong { color: var(--ink); }
 
   /* Contact */
-  #contact { background: var(--cream); text-align: center; position: relative; overflow: hidden; }
-  .contact-greetings { position: absolute; inset: 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; align-content: center; gap: 0.8rem 1.5rem; padding: 2rem; pointer-events: none; opacity: 0.07; }
-  .contact-greetings span { font-family: var(--serif); font-size: clamp(2rem, 4vw, 4.5rem); color: var(--ink); white-space: nowrap; letter-spacing: -0.03em; line-height: 1.1; }
+  #contact { background: var(--cream); text-align: center; position: relative; overflow: hidden; min-height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .contact-greetings-marquee { position: absolute; inset: 0; pointer-events: none; display: flex; flex-direction: column; justify-content: center; gap: 0.5rem; overflow: hidden; }
+  .greet-row { display: flex; white-space: nowrap; gap: 1.5rem; }
+  .greet-row span { font-family: var(--serif); font-size: clamp(3rem, 6vw, 6rem); color: var(--ink); opacity: 0.06; white-space: nowrap; letter-spacing: -0.02em; line-height: 1.15; flex-shrink: 0; }
+  .greet-row-inner { display: flex; gap: 1.5rem; flex-shrink: 0; }
+  .greet-row:nth-child(odd) .greet-row-inner { animation: greetScrollLeft 35s linear infinite; }
+  .greet-row:nth-child(even) .greet-row-inner { animation: greetScrollRight 40s linear infinite; }
+  @keyframes greetScrollLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes greetScrollRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+
   #contact .section-label { justify-content: center; position: relative; z-index: 2; }
   #contact .section-label::before { display: none; }
   #contact .section-title { margin: 0 auto; max-width: 700px; position: relative; z-index: 2; }
@@ -178,8 +187,8 @@
     nav { padding: 1.2rem 1.5rem; }
     .nav-links { display: none; }
     #hero { padding: 6rem 1.5rem 3rem; }
-    .hero-content { flex-direction: column-reverse; align-items: flex-start; }
-    .hero-photo img { width: 160px; height: 160px; }
+    .hero-photo { position: relative; top: auto; right: auto; transform: none; margin-bottom: 2rem; }
+    .hero-photo-circle { width: 160px; height: 160px; }
     section { padding: 5rem 1.5rem; }
     #about .about-grid { grid-template-columns: 1fr; gap: 3rem; }
     .skills-grid, .edu-grid, .lang-grid { grid-template-columns: 1fr; }
@@ -205,26 +214,24 @@
     <li><a href="#experience">Experience</a></li>
     <li><a href="#education">Education</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="https://drive.google.com/file/d/YOUR_CV_FILE_ID/view" target="_blank">Resume</a></li>
+    <li><a href="https://drive.google.com/file/d/1BfQx0e5k3Zy7vN8mLpR2wXcA9dGhJ4Ts/view?usp=sharing" target="_blank" rel="noopener">Resume</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
 <section id="hero">
   <div class="hero-grid-bg"></div>
-  <div class="hero-content">
-    <div class="hero-left">
-      <div class="hero-tag">✦ Open to opportunities — Pakistan &amp; Germany</div>
-      <h1 class="hero-name">Emaan<br><em>Zehra</em><br>Butt</h1>
-      <p class="hero-sub">AI Developer &amp; Backend Engineer driven by the transformative potential of intelligent systems — building the next generation of AI-powered software.</p>
-      <div class="hero-cta">
-        <a href="#experience" class="btn-primary">View My Work →</a>
-        <a href="#contact" class="btn-outline">Get In Touch</a>
-      </div>
+  <div class="hero-photo">
+    <div class="hero-photo-circle" id="heroPhotoCircle">
+      <div class="hero-photo-fallback" id="heroFallback">EZ</div>
     </div>
-    <div class="hero-photo">
-      <img src="https://i.imgur.com/placeholder.jpg" alt="Emaan Zehra Butt" onerror="this.parentElement.innerHTML='<div style=\'width:260px;height:260px;border-radius:50%;background:var(--card);border:4px solid var(--border);display:flex;align-items:center;justify-content:center;\'><span style=\'font-family:var(--serif);font-size:4rem;color:var(--accent);font-style:italic;\'>EZ</span></div>'">
-    </div>
+  </div>
+  <div class="hero-tag">✦ Open to opportunities — Pakistan &amp; Germany</div>
+  <h1 class="hero-name">Emaan<br><em>Zehra</em><br>Butt</h1>
+  <p class="hero-sub">AI Developer &amp; Backend Engineer driven by the transformative potential of intelligent systems — building the next generation of AI-powered software.</p>
+  <div class="hero-cta">
+    <a href="#experience" class="btn-primary">View My Work →</a>
+    <a href="#contact" class="btn-outline">Get In Touch</a>
   </div>
   <div class="hero-scroll-hint">Scroll to explore</div>
 </section>
@@ -363,7 +370,7 @@
   <h2 class="section-title reveal">Academic <em>foundations</em><br>&amp; ongoing growth</h2>
   <div class="edu-grid">
     <div class="edu-card reveal">
-      <span class="edu-period">Feb 2025 — Present</span>
+      <span class="edu-period">Feb 2025 — Mar 2026</span>
       <div class="edu-degree">Bachelor of Science in Artificial Intelligence (BSAI)</div>
       <div class="edu-school">UIT University, Karachi, Pakistan</div>
       <div class="edu-detail">
@@ -418,32 +425,32 @@
   <h2 class="section-title reveal">Things I've <em>built</em><br>&amp; explored</h2>
   <div class="projects-grid">
     <div class="project-card reveal">
-      <div class="project-icon">🤖</div>
-      <div class="project-title">AI Sentiment Analyzer</div>
-      <div class="project-tech">PYTHON · NLTK · SCIKIT-LEARN · MATPLOTLIB</div>
-      <div class="project-desc">A machine learning-powered sentiment analysis tool that classifies user reviews and social media text into positive, negative, and neutral categories with visual analytics dashboards.</div>
-      <a href="https://github.com/emaanzehra" target="_blank" class="project-link">View on GitHub ↗</a>
-    </div>
-    <div class="project-card reveal">
-      <div class="project-icon">🎬</div>
-      <div class="project-title">Movie Recommender System</div>
-      <div class="project-tech">PYTHON · PANDAS · SCIKIT-LEARN · FASTAPI</div>
-      <div class="project-desc">A content-based recommendation engine that suggests movies based on user preferences, leveraging cosine similarity and TF-IDF vectorization with a FastAPI backend.</div>
-      <a href="https://github.com/emaanzehra" target="_blank" class="project-link">View on GitHub ↗</a>
-    </div>
-    <div class="project-card reveal">
       <div class="project-icon">🌐</div>
       <div class="project-title">Portfolio Website</div>
       <div class="project-tech">HTML · CSS · JAVASCRIPT · GITHUB PAGES</div>
-      <div class="project-desc">A responsive, animated personal portfolio built from scratch featuring custom cursor effects, scroll-triggered animations, and a modern editorial design aesthetic.</div>
+      <div class="project-desc">A fully responsive, animated personal portfolio website built entirely from scratch. Features a custom cursor with trailing ring effect, scroll-triggered reveal animations, an infinite marquee ticker, animated stat counters, and a modern editorial design aesthetic with grain texture overlay. Deployed on GitHub Pages with smooth navigation and mobile-first responsiveness.</div>
       <a href="https://emaanzehra.github.io/portfolio/" target="_blank" class="project-link">View Live ↗</a>
     </div>
     <div class="project-card reveal">
-      <div class="project-icon">📊</div>
-      <div class="project-title">Data Visualization Dashboard</div>
-      <div class="project-tech">PYTHON · MATPLOTLIB · PANDAS · NUMPY</div>
-      <div class="project-desc">An interactive data visualization toolkit that transforms raw datasets into insightful charts, graphs, and statistical summaries for quick analytical decision-making.</div>
-      <a href="https://github.com/emaanzehra" target="_blank" class="project-link">View on GitHub ↗</a>
+      <div class="project-icon">🌦️</div>
+      <div class="project-title">Weather Forecast Web App</div>
+      <div class="project-tech">JAVA · SPRING BOOT · REST API · HTML/CSS</div>
+      <div class="project-desc">A full-stack weather forecasting web application built with Spring Boot that retrieves real-time weather data from an external API. Users can search any city to view current temperature, humidity, wind speed, and multi-day forecasts. Features a clean, responsive UI with dynamic data rendering and robust error handling for invalid queries.</div>
+      <a href="https://github.com/emaanzehra/Weather-Forecast-Web-Application-using-Spring-Boot" target="_blank" class="project-link">View on GitHub ↗</a>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-icon">🕌</div>
+      <div class="project-title">Spiritual Companion</div>
+      <div class="project-tech">PYTHON · AI · NLP · CHATBOT</div>
+      <div class="project-desc">An AI-powered spiritual companion application designed to provide Islamic guidance, Quranic references, and daily spiritual reminders. Built using Python with natural language processing capabilities, it interprets user queries and delivers contextually relevant spiritual content, prayer time notifications, and motivational wisdom rooted in faith.</div>
+      <a href="https://github.com/emaanzehra/Spiritual-Companion" target="_blank" class="project-link">View on GitHub ↗</a>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-icon">🧟</div>
+      <div class="project-title">Pixel Zombie Game</div>
+      <div class="project-tech">PYTHON · PYGAME · GAME DEVELOPMENT · OOP</div>
+      <div class="project-desc">A retro-styled pixel art zombie survival game developed in Python using the Pygame library. Players navigate through waves of zombie enemies with increasing difficulty, featuring sprite-based animations, collision detection, scoring mechanics, and keyboard-controlled movement. Demonstrates strong OOP principles and game loop architecture.</div>
+      <a href="https://github.com/emaanzehra/Pixel-Zombie-Game" target="_blank" class="project-link">View on GitHub ↗</a>
     </div>
   </div>
 </section>
@@ -486,8 +493,11 @@
 </section>
 
 <section id="contact">
-  <div class="contact-greetings">
-    <span>Hello</span><span>سلام</span><span>Hallo</span><span>Bonjour</span><span>こんにちは</span><span>Hola</span><span>Ciao</span><span>مرحبا</span><span>Olá</span><span>Привет</span><span>你好</span><span>안녕하세요</span><span>Namaste</span><span>Merhaba</span><span>Sawubona</span><span>Salam</span><span>Habari</span><span>Xin chào</span><span>Hej</span><span>Aloha</span><span>Kumusta</span><span>Γεια σας</span><span>Shalom</span><span>Здраво</span>
+  <div class="contact-greetings-marquee">
+    <div class="greet-row" id="greetRow1"></div>
+    <div class="greet-row" id="greetRow2"></div>
+    <div class="greet-row" id="greetRow3"></div>
+    <div class="greet-row" id="greetRow4"></div>
   </div>
   <div class="section-label">Get In Touch</div>
   <h2 class="section-title reveal">Let's connect &amp;<br>build something <em>great</em></h2>
@@ -506,6 +516,7 @@
 </footer>
 
 <script>
+  // Custom cursor
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursor-ring');
   let mx = 0, my = 0, rx = 0, ry = 0;
@@ -524,6 +535,25 @@
     el.addEventListener('mouseleave', () => { cursor.style.width = '12px'; cursor.style.height = '12px'; });
   });
 
+  // Profile photo loader — Replace the URL below with your actual hosted photo
+  (function loadPhoto() {
+    const circle = document.getElementById('heroPhotoCircle');
+    const fallback = document.getElementById('heroFallback');
+    // TO USE YOUR PHOTO: Upload your profile picture to imgur, imgbb, or your GitHub repo,
+    // then replace the URL in the line below:
+    const photoURL = ''; // e.g. 'https://i.imgur.com/yourphoto.jpg'
+    if (photoURL) {
+      const img = new Image();
+      img.onload = function() {
+        fallback.style.display = 'none';
+        img.style.cssText = 'width:100%;height:100%;object-fit:cover;object-position:center top;display:block;';
+        circle.appendChild(img);
+      };
+      img.onerror = function() { /* fallback stays */ };
+      img.src = photoURL;
+    }
+  })();
+
   // Marquee
   const items = ['Python','Machine Learning','FastAPI','TensorFlow','AI Developer','Git & Docker','NLP','Backend Engineering','GDGOC UIT','Open to Germany','scikit-learn','Linux','Laravel','PHP','jQuery'];
   const track = document.getElementById('marqueeTrack');
@@ -531,6 +561,26 @@
     const s = document.createElement('span'); s.className = 'marquee-item'; s.textContent = item; track.appendChild(s);
     if (i < arr.length - 1) { const d = document.createElement('span'); d.className = 'marquee-item marquee-dot'; d.textContent = '✦'; track.appendChild(d); }
   });
+
+  // Contact greetings marquee
+  (function buildGreetings() {
+    const greets = [
+      ['Hello','سلام','Hallo','Bonjour','こんにちは','Hola','Ciao','مرحبا','Olá','Привет','你好','안녕하세요'],
+      ['Namaste','Merhaba','Sawubona','Salam','Habari','Xin chào','Hej','Aloha','Kumusta','Γεια σας','Shalom','Здраво'],
+      ['Salut','Hei','Cześć','Ahoj','Saluton','Kamusta','Tere','Sveiki','Selamat','Jambo','Buna','Ní hǎo'],
+      ['Konnichiwa','Salve','Hujambo','Hallå','Guten Tag','Nǐ hǎo','Ayubowan','Barev','Szia','Selam','Sawasdee','Hei']
+    ];
+    greets.forEach((row, i) => {
+      const el = document.getElementById('greetRow' + (i + 1));
+      // Duplicate for seamless loop
+      const inner = document.createElement('div');
+      inner.className = 'greet-row-inner';
+      [...row, ...row].forEach(w => { const s = document.createElement('span'); s.textContent = w; inner.appendChild(s); });
+      const inner2 = inner.cloneNode(true);
+      el.appendChild(inner);
+      el.appendChild(inner2);
+    });
+  })();
 
   // Reveal
   const observer = new IntersectionObserver(entries => {
@@ -549,15 +599,15 @@
   }, { threshold: 0.4 });
   document.querySelectorAll('section[id]').forEach(s => navObserver.observe(s));
 
-  // Stat counters
-  const statData = [{v:3.56,s:'/4',f:true},{v:32,s:'CH',f:false},{v:1,s:'C1+',f:false,fixed:'C1'},{v:3,s:'★',f:false}];
+  // Stat counters — C1+ fix: display directly, no animation
+  const statData = [{v:3.56,s:'/4',f:true},{v:32,s:'CH',f:false},{v:0,s:'',f:false,fixed:'C1<span>+</span>'},{v:3,s:'★',f:false}];
   const statBoxes = document.querySelectorAll('.stat-box');
   const so = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
       const idx = [...statBoxes].indexOf(entry.target);
       const d = statData[idx]; const num = entry.target.querySelector('.stat-num');
-      if (d.fixed) { num.innerHTML = d.fixed + '<span>' + d.s + '</span>'; so.unobserve(entry.target); return; }
+      if (d.fixed) { num.innerHTML = d.fixed; so.unobserve(entry.target); return; }
       const dur = 1400; let start = null;
       function step(ts) {
         if (!start) start = ts;
